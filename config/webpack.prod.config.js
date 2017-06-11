@@ -2,8 +2,8 @@
  * Created by Courtland.Parker on 6/10/2017.
  */
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const root = path.resolve(__dirname, '..');
@@ -34,6 +34,38 @@ module.exports = {
             'react-tap-event-plugin': 'react-tap-event-plugin'
         },
 
+        module: {
+            loaders: [
+                {
+                    test: /\.js$/,
+                    include: appSrc,
+                    exclude: /\.spec.js$/,
+                    loaders: ['babel-loader']
+                },
+                {
+                    test: /\.css?$|\.scss$/,
+                    include: appSrc,
+                    loaders: [
+                        'style',
+                        'css?sourceMap',
+                        'postcss',
+                        'sass?outputStyle=expanded&sourceMap'
+                    ]
+                },
+                {
+                    test: /\.png$/,
+                    loader: "url-loader?limit=100000"
+                }
+            ]
+        },
+
+        sassLoader: {
+            includePaths: [
+                appSrc,
+                path.join(root, 'node_modules')
+            ]
+        },
+        
         output: {
             path: path.join(root, 'dist'),
             filename: 'index.js',
@@ -42,39 +74,7 @@ module.exports = {
         },
 
         postcss: () => ({
-        defaults: [autoprefixer],
-        cleaner: [autoprefixer({ browsers: ['last 2 versions'] })]
-    }),
-
-    sassLoader: {
-    includePaths: [
-        appSrc,
-        path.join(root, 'node_modules')
-    ]
-},
-
-module: {
-    loaders: [
-        {
-            test: /\.js$/,
-            include: appSrc,
-            exclude: /\.spec.js$/,
-            loaders: ['babel-loader']
-        },
-        {
-            test: /\.css?$|\.scss$/,
-            include: appSrc,
-            loaders: [
-                'style',
-                'css?sourceMap',
-                'postcss',
-                'sass?outputStyle=expanded&sourceMap'
-            ]
-        },
-        {
-            test: /\.png$/,
-            loader: "url-loader?limit=100000"
-        }
-    ]
-}
+            defaults: [autoprefixer],
+            cleaner: [autoprefixer({ browsers: ['last 2 versions'] })]
+        })
 };
