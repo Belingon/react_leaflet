@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 class App extends Component {
 
     render() {
+
         return (
             <div className="reactLeaflet">
                 Hello, this is my react leaflet project
