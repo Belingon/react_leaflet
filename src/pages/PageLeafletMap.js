@@ -1,17 +1,19 @@
 /**
  * Created by Courtland.Parker on 6/11/2017.
  */
-import React, { Component }  from 'react'
-import { render } from 'react-dom'
-import {Map,
-        Circle,
-        CircleMarker,
-        TileLayer,
-        Marker,
-        Popup,
-        Polygon,
-        Polyline,
-        Rectangle} from 'react-leaflet'
+import React, {Component}  from 'react'
+import {render} from 'react-dom'
+import {
+    Map,
+    Circle,
+    CircleMarker,
+    TileLayer,
+    Marker,
+    Popup,
+    Polygon,
+    Polyline,
+    Rectangle
+} from 'react-leaflet'
 import "./pageLeafletMap.scss";
 
 class PageLeafletMap extends Component {
@@ -44,28 +46,30 @@ class PageLeafletMap extends Component {
         const rectangle = [[51.49, -0.08], [51.5, -0.06]]
 
         return (
-            <Map center={position} zoom={this.state.zoom} length={4} onClick={this.handleClick}>
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                />
-                <Circle center={position} fillColor="blue" radius={200}/>
-                <CircleMarker center={[51.51,-0.12]} color="red" radius={20}>
-                    <Popup>
-                        <span>Another PopUp</span>
-                    </Popup>
-                </CircleMarker>
-                <Marker position={position}>
-                    <Popup>
-                        <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-                    </Popup>
-                </Marker>
-                <Polyline color="lime" positions={polyline} />
-                <Polyline color="blue" positions={multiPolyline} />
-                <Polygon color="purple" positions={polygon} />
-                <Polygon color="red" positions={multiPolygon} />
-                <Rectangle bounds={rectangle} color="black" />
-            </Map>
+            <div>
+                <Map center={position} zoom={this.state.zoom} length={4} onClick={this.handleClick}>
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                    />
+                    <Circle center={position} fillColor="blue" radius={200}/>
+                    <CircleMarker center={[51.51,-0.12]} color="red" radius={20}>
+                        <Popup>
+                            <span>Another PopUp</span>
+                        </Popup>
+                    </CircleMarker>
+                    <Marker position={position}>
+                        <Popup>
+                            <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
+                        </Popup>
+                    </Marker>
+                    <Polyline color="lime" positions={polyline}/>
+                    <Polyline color="blue" positions={multiPolyline}/>
+                    <Polygon color="purple" positions={polygon}/>
+                    <Polygon color="red" positions={multiPolygon}/>
+                    <Rectangle bounds={rectangle} color="black"/>
+                </Map>
+            </div>
         );
     }
 }

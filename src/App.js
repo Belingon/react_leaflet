@@ -11,10 +11,7 @@ class App extends Component {
 
         return (
             <ThemeProvider>
-                <div className="reactLeaflet">
-                    Hello, this is my react leaflet project
                     {this.props.children}
-                </div>
             </ThemeProvider>
         )
     }

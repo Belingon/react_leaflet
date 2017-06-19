@@ -8,39 +8,63 @@ import RaisedButton from 'material-ui/RaisedButton';
 import RightIcon from 'material-ui/svg-icons/navigation/chevron-right';
 import LeftIcon from 'material-ui/svg-icons/navigation/chevron-left';
 import IconButton from 'material-ui/IconButton';
-import {connect} from "react-redux";
+import icon from '../../public/logo.ico';
+import './nav.scss';
+
+const NAVIGATION_SLIDER_ICON_STYLE = {
+    zIndex: 2,
+    paddingTop: '15px'
+};
 
 class Nav extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {open: true};
+        this.state = {open: false};
     }
 
-    handleToggle = () => this.setState({open: !this.state.open});
+    handleToggle = () => {
+        this.setState({
+            open: !this.state.open
+        });
+    };
+
+    getContainerWidth(){
+        if(this.state.open){
+            return 'bigNavBar';
+        } else {
+            return 'smallNavBar';
+        }
+    };
 
     render() {
         return (
-            <div >
-                <RaisedButton label="Toggle" onTouchTap={this.handleToggle}/>
-
-                <Drawer open={!this.state.open}>
-                    <h3> React Project</h3>
-                    <IconButton onTouchTap={this.handleToggle} style={{float: 'right', zIndex: 2}}>
-                        <LeftIcon/>
-                    </IconButton>
+            <div>
+                <Drawer open={this.state.open} width={250}>
+                    <div className="navHeader">
+                        <span style={{display: "flex"}}>
+                            <img src={icon} height="50px" width="50px"/>
+                            <h3> React Project</h3>
+                        </span>
+                        <IconButton onTouchTap={this.handleToggle} style={NAVIGATION_SLIDER_ICON_STYLE}>
+                            <LeftIcon/>
+                        </IconButton>
+                    </div>
                     <MenuItem>Item 1</MenuItem>
-
                 </Drawer>
 
-                <Drawer open={this.state.open}
-                        width = {200}>
-                    <IconButton onTouchTap={this.handleToggle}>
-                        <RightIcon/>
-                    </IconButton>
+                <Drawer open={!this.state.open} width={100}>
+                    <div className="navHeader">
+                        <span><img src={icon} height="50px" width="50px"/></span>
+                        <IconButton onTouchTap={this.handleToggle} style={NAVIGATION_SLIDER_ICON_STYLE}>
+                            <RightIcon/>
+                        </IconButton>
+                    </div>
                     <MenuItem>Item 2</MenuItem>
                 </Drawer>
-                {this.props.children}
+                <div className={this.getContainerWidth()}>
+                    {this.props.children}
+                </div>
             </div>
 
         )
