@@ -1,4 +1,20 @@
-.leaflet-container {
-  height:200px;
-  width:20%;
+$blueTextColor: #189ED8;
+$darkBlueTextColor: #0000aa;
+
+.pageContainer {
+  padding-left: 10px;
+}
+
+.titleContainer {
+  padding: 5px 20px;
+}
+
+.title {
+  font-size: 30px;
+  color: $blueTextColor;
+}
+
+.subTitle {
+  font-size: 20px;
+  color: $darkBlueTextColor;
 }
