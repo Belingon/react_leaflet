@@ -2,6 +2,7 @@
  * Created by Courtland.Parker on 6/16/2017.
  */
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -9,6 +10,7 @@ import RightIcon from 'material-ui/svg-icons/navigation/chevron-right';
 import LeftIcon from 'material-ui/svg-icons/navigation/chevron-left';
 import IconButton from 'material-ui/IconButton';
 import icon from '../../public/logo.ico';
+import leafletIcon from '../../public/leaflet.ico';
 import './nav.scss';
 
 const NAVIGATION_SLIDER_ICON_STYLE = {
@@ -29,8 +31,8 @@ class Nav extends Component {
         });
     };
 
-    getContainerWidth(){
-        if(this.state.open){
+    getContainerWidth() {
+        if (this.state.open) {
             return 'bigNavBar';
         } else {
             return 'smallNavBar';
@@ -40,28 +42,43 @@ class Nav extends Component {
     render() {
         return (
             <div>
-                <Drawer open={this.state.open} width={250}>
-                    <div className="navHeader">
-                        <span style={{display: "flex"}}>
+                <div className="nav">
+                    <Drawer open={this.state.open} width={250}>
+                        <div className="navHeader">
+                        <span className="displayFlex">
                             <img src={icon} height="50px" width="50px"/>
-                            <h3> React Project</h3>
+                            <h3>React Project</h3>
                         </span>
-                        <IconButton onTouchTap={this.handleToggle} style={NAVIGATION_SLIDER_ICON_STYLE}>
-                            <LeftIcon/>
-                        </IconButton>
-                    </div>
-                    <MenuItem>Item 1</MenuItem>
-                </Drawer>
+                            <IconButton onTouchTap={this.handleToggle} style={NAVIGATION_SLIDER_ICON_STYLE}>
+                                <LeftIcon/>
+                            </IconButton>
+                        </div>
+                        <MenuItem>
+                            <Link to="/leafletMap" className="navLink" activeClassName="activeLink">
+                                <span className="displayFlex">
+                                    <img src={leafletIcon} height="50px" width="50px"/>
+                                    <label className="nav_label">LeafLet Examples</label>
+                                </span>
+                            </Link>
+                        </MenuItem>
+                    </Drawer>
 
-                <Drawer open={!this.state.open} width={100}>
-                    <div className="navHeader">
-                        <span><img src={icon} height="50px" width="50px"/></span>
-                        <IconButton onTouchTap={this.handleToggle} style={NAVIGATION_SLIDER_ICON_STYLE}>
-                            <RightIcon/>
-                        </IconButton>
-                    </div>
-                    <MenuItem>Item 2</MenuItem>
-                </Drawer>
+                    <Drawer open={!this.state.open} width={100}>
+                        <div className="navHeader">
+                            <span>
+                                <img src={icon} height="50px" width="50px"/>
+                            </span>
+                            <IconButton onTouchTap={this.handleToggle} style={NAVIGATION_SLIDER_ICON_STYLE}>
+                                <RightIcon/>
+                            </IconButton>
+                        </div>
+                        <MenuItem>
+                            <Link to="leafletMap" className="navLink" activeClassName="activeLink">
+                                <img className="paddingTop" src={leafletIcon} height="50px" width="50px"/>
+                            </Link>
+                        </MenuItem>
+                    </Drawer>
+                </div>
                 <div className={this.getContainerWidth()}>
                     {this.props.children}
                 </div>
