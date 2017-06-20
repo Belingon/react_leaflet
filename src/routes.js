@@ -12,8 +12,8 @@ export default(
     <Route path="/" component={App}>
         <IndexRedirect to="multipleMarkerMap"/>
         <Route component={Nav}>
-            <Route path="multipleMarkerMap" component={MultipleMarker}/>
-            <Route path="choroplethMap" component={PageChoropleth}/>
+            <Route path="/multipleMarkerMap" component={MultipleMarker}/>
+            <Route path="/choroplethMap" component={PageChoropleth}/>
         </Route>
     </Route>
 );

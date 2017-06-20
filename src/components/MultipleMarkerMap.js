@@ -86,7 +86,6 @@ class MultipleMarkerMap extends Component {
     };
 
     render() {
-        console.log(this.refs);
         return (
             <div>
                 <div className="titleContainer">

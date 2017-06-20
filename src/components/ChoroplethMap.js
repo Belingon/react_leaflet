@@ -52,6 +52,10 @@ class ChoroplethMap extends Component {
     render() {
         return (
             <div>
+                <div className="titleContainer">
+                    <label className="subTitle">Choropleth US States Map</label>
+                </div>
+                <p>This map uses census data to create a choropleth map based on population density</p>
                 <Map id="choroplethMap" className="leaflet-choropleth-container" ref="choroplethMap"
                      center={this.state.latlng} zoom={this.state.zoom}>
                     <TileLayer
