@@ -91,7 +91,8 @@ class MultipleMarkerMap extends Component {
                 <div className="titleContainer">
                     <label className="subTitle">Multiple Marker Map</label>
                 </div>
-                <p>This map uses mouse events to create new markers and output the latitude and longitude values</p>
+                <p>This map uses mouse events to create new markers and output the latitude and longitude values<br/>
+                    Click anywhere to add more markers!</p>
                 <Map id="multipleMarkerMap" className="leaflet-multiple-container" ref="map" center={this.state.latlng} zoom={this.state.zoom}
                      onClick={this.handleMapClick}>
                     <TileLayer
