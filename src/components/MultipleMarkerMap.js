@@ -2,7 +2,6 @@
  * Created by Courtland.Parker on 6/18/2017.
  */
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {Map, TileLayer, Marker, Popup} from "react-leaflet";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
@@ -87,13 +86,14 @@ class MultipleMarkerMap extends Component {
     };
 
     render() {
+        console.log(this.refs);
         return (
             <div>
                 <div className="titleContainer">
                     <label className="subTitle">Multiple Marker Map</label>
                 </div>
                 <p>This map uses mouse events to create new markers and output the latitude and longitude values</p>
-                <Map id="multipleMarkerMap" ref="map" center={this.state.latlng} zoom={this.state.zoom}
+                <Map id="multipleMarkerMap" className="leaflet-multiple-container" ref="map" center={this.state.latlng} zoom={this.state.zoom}
                      onClick={this.handleMapClick}>
                     <TileLayer
                         attribution='Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> 

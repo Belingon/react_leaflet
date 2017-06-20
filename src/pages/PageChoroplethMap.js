@@ -2,7 +2,7 @@
  * Created by Courtland.Parker on 6/11/2017.
  */
 import React, {Component}  from 'react'
-
+import ChoroplethMap from '../components/ChoroplethMap';
 
 class PageChoroplethMap extends Component {
     render() {
@@ -11,9 +11,10 @@ class PageChoroplethMap extends Component {
                 <div className="titleContainer">
                     <label className="title">Choropleth Map</label>
                 </div>
+
+                <ChoroplethMap/>
             </div>
         );
     }
 }
-
 export default PageChoroplethMap;
