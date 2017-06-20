@@ -29,7 +29,7 @@ class MultipleMarkerMap extends Component {
         }
     }
 
-    handleClick = (e) => {
+    handleMapClick = (e) => {
         let position = {
             lat: e.latlng.lat,
             lng: e.latlng.lng,
@@ -38,6 +38,11 @@ class MultipleMarkerMap extends Component {
         let newMarkers = Object.assign([], this.state.markers);
         newMarkers.push(position);
         this.setState({markers: newMarkers});
+    };
+
+    handleRowSelection = (e) => {
+        let reference = "marker" + e[0];
+        this.refs[reference].leafletElement.openPopup();
     };
 
     handleRemoveMarker = () => {
@@ -82,11 +87,11 @@ class MultipleMarkerMap extends Component {
         return (
             <div>
                 <div className="titleContainer">
-                    <label className="subTitle">Movable Marker Map</label>
+                    <label className="subTitle">Multiple Marker Map</label>
                 </div>
-                <p>This map uses mouse events to move the marker and output the latitude and longitude values</p>
+                <p>This map uses mouse events to create new markers and output the latitude and longitude values</p>
                 <Map id="multipleMarkerMap" ref="map" center={this.state.latlng} zoom={this.state.zoom}
-                     onClick={this.handleClick}>
+                     onClick={this.handleMapClick}>
                     <TileLayer
                         attribution='Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> 
                         contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
@@ -96,7 +101,7 @@ class MultipleMarkerMap extends Component {
                     {this.getMarkers()}
                 </Map>
 
-                <Table style={{width: '50%'}} selectable={false}>
+                <Table style={{width: '50%'}}>
                     <TableHeader displaySelectAll={false}>
                         <TableRow>
                             <TableHeaderColumn>Index</TableHeaderColumn>
