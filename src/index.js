@@ -13,7 +13,6 @@ import 'babel-polyfill';
 injectTapEventPlugin();
 
 const store = configureStore();
-console.log("IM HERE");
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory} routes={routes}/>

@@ -3,15 +3,16 @@
  */
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import ThemeProvider from "./theme_provider/ThemeProvider";
 
 class App extends Component {
 
     render() {
+
         return (
-            <div className="reactLeaflet">
-                Hello, this is my react leaflet project
-                {this.props.children}
-            </div>
+            <ThemeProvider>
+                    {this.props.children}
+            </ThemeProvider>
         )
     }
 }

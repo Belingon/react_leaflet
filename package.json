@@ -18,6 +18,7 @@
     "url": "https://github.com/Belingon/react_leaflet/issues"
   },
   "dependencies": {
+    "material-ui": "0.18.0",
     "leaflet": "^1.0.3",
     "react": "15.5.4",
     "react-addons-shallow-compare": "^15.5.2",
