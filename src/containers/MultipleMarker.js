@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import PageLeafletMap from '../pages/PageLeafletMap';
+import PageMultipleMarkerMap from '../pages/PageMultipleMarkerMap';
 import {updateMarkers} from '../actions/multipleMarkers';
 
 const mapStateToProps = (state) => {
@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(PageLeafletMap)
+export default connect(mapStateToProps, mapDispatchToProps)(PageMultipleMarkerMap)

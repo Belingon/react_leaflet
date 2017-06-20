@@ -5,12 +5,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
 import RightIcon from 'material-ui/svg-icons/navigation/chevron-right';
 import LeftIcon from 'material-ui/svg-icons/navigation/chevron-left';
 import IconButton from 'material-ui/IconButton';
 import icon from '../../public/logo.ico';
 import leafletIcon from '../../public/leaflet.ico';
+import choroplethIcon from '../../public/choropleth.ico';
 import './nav.scss';
 
 const NAVIGATION_SLIDER_ICON_STYLE = {
@@ -54,10 +54,18 @@ class Nav extends Component {
                             </IconButton>
                         </div>
                         <MenuItem>
-                            <Link to="/leafletMap" className="navLink" activeClassName="activeLink">
+                            <Link to="/multipleMarkerMap" className="navLink" activeClassName="activeLink">
                                 <span className="displayFlex">
                                     <img src={leafletIcon} height="50px" width="50px"/>
-                                    <label className="nav_label">LeafLet Examples</label>
+                                    <label className="nav_label">Multiple Marker Example</label>
+                                </span>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem>
+                            <Link to="/choroplethMap" className="navLink" activeClassName="activeLink">
+                                <span className="displayFlex">
+                                    <img src={choroplethIcon} height="50px" width="50px"/>
+                                    <label className="nav_label">Choropleth Example</label>
                                 </span>
                             </Link>
                         </MenuItem>
@@ -73,8 +81,13 @@ class Nav extends Component {
                             </IconButton>
                         </div>
                         <MenuItem>
-                            <Link to="leafletMap" className="navLink" activeClassName="activeLink">
+                            <Link to="/multipleMarkerMap" className="navLink" activeClassName="activeLink">
                                 <img className="paddingTop" src={leafletIcon} height="50px" width="50px"/>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem>
+                            <Link to="/choroplethMap" className="navLink" activeClassName="activeLink">
+                                <img className="paddingTop" src={choroplethIcon} height="50px" width="50px"/>
                             </Link>
                         </MenuItem>
                     </Drawer>

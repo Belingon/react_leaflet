@@ -4,14 +4,14 @@
 import React, {Component}  from 'react'
 import PropTypes from 'prop-types';
 import MultipleMarkerMap from '../components/MultipleMarkerMap';
-import "./pageLeafletMap.scss";
+import "./pageMultipleMarkerMap.scss";
 
-class PageLeafletMap extends Component {
+class PageMultipleMarkerMap extends Component {
     render() {
         return (
             <div className="pageContainer">
                 <div className="titleContainer">
-                    <label className="title">Leaflet Maps</label>
+                    <label className="title">Multiple Marker Leaflet Map</label>
                 </div>
 
                 <MultipleMarkerMap markers={this.props.markers} updateMarkers={this.props.updateMarkers}/>
@@ -21,9 +21,9 @@ class PageLeafletMap extends Component {
     }
 }
 
-PageLeafletMap.propTypes = {
+PageMultipleMarkerMap.propTypes = {
     markers: PropTypes.array.isRequired,
     updateMarkers: PropTypes.func.isRequired
 };
 
-export default PageLeafletMap;
+export default PageMultipleMarkerMap;
