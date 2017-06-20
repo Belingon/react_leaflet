@@ -4,11 +4,10 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {Map, TileLayer, Marker, Popup} from "react-leaflet";
-import IconButton from 'material-ui/IconButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
 import {Table, TableHeader, TableBody, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
-import Delete from 'material-ui/svg-icons/action/delete';
+import Delete from "material-ui/svg-icons/action/delete";
 import "./multipleMarkerMap.scss";
 
 const INITIAL_MARKER = {
@@ -23,7 +22,7 @@ class MultipleMarkerMap extends Component {
                 lat: 51.505,
                 lng: -0.09
             },
-            markerToDelete: '',
+            markerToDelete: null,
             markers: [INITIAL_MARKER],
             zoom: 13
         }
@@ -46,9 +45,13 @@ class MultipleMarkerMap extends Component {
     };
 
     handleRemoveMarker = () => {
-        let newMarkers = Object.assign([], this.state.markers);
-        newMarkers.splice(this.state.markerToDelete, 1);
-        this.setState({markers: newMarkers, markerToDelete: ''});
+        if (this.state.markerToDelete !== null) {
+            if (!isNaN(this.state.markerToDelete) && !(this.state.markerToDelete > this.state.markers.length)) {
+                let newMarkers = Object.assign([], this.state.markers);
+                newMarkers.splice(this.state.markerToDelete, 1);
+                this.setState({markers: newMarkers, markerToDelete: null});
+            }
+        }
     };
 
     handleTextFieldChange = (event) => {
@@ -101,7 +104,7 @@ class MultipleMarkerMap extends Component {
                     {this.getMarkers()}
                 </Map>
 
-                <Table style={{width: '50%'}}>
+                <Table style={{width: '50%'}} onRowSelection={this.handleRowSelection}>
                     <TableHeader displaySelectAll={false}>
                         <TableRow>
                             <TableHeaderColumn>Index</TableHeaderColumn>
@@ -114,7 +117,8 @@ class MultipleMarkerMap extends Component {
                     </TableBody>
                 </Table>
                 <div>
-                    <TextField hintText="Index of Marker to Remove" value={this.state.markerToDelete}
+                    <TextField hintText="Index of Marker to Remove"
+                               value={(this.state.markerToDelete ?  this.state.markerToDelete : '')}
                                onChange={this.handleTextFieldChange}/>
                     <RaisedButton icon={<Delete/>} label="Remove Selected Marker" onTouchTap={this.handleRemoveMarker}/>
                 </div>
@@ -122,10 +126,4 @@ class MultipleMarkerMap extends Component {
         )
     }
 }
-
-MultipleMarkerMap.propTypes = {
-    markers: PropTypes.array.isRequired,
-    updateMarkers: PropTypes.func.isRequired
-};
-
 export default MultipleMarkerMap;
