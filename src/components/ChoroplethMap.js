@@ -3,9 +3,8 @@
  */
 import React, {Component} from "react";
 import {Map, TileLayer, GeoJSON} from "react-leaflet";
-import {STATE_DATA} from './usStates';
-import './choroplethMap.scss';
-import RaisedButton from 'material-ui/RaisedButton';
+import {STATE_DATA} from "./usStates";
+import "./choroplethMap.scss";
 
 
 class ChoroplethMap extends Component {
@@ -16,21 +15,10 @@ class ChoroplethMap extends Component {
             latlng: {
                 lat: 39.977,
                 lng: -98.876
-                // lat: 42.386,
-                // lng: -71.119
             },
             zoom: 5
         }
     }
-
-    compoonentDidUpdate(){
-        console.log(this.refs);
-    }
-
-    handleClick = () => {
-      console.log('I was clicked');
-        this.setState({zoom: 5});
-    };
 
     getFillColor = (density) => {
         return density > 1000 ? '#800026' :
@@ -73,9 +61,7 @@ class ChoroplethMap extends Component {
                         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                     />
                     <GeoJSON ref="geojson" data={STATE_DATA} style={this.getStyle} onEachFeature={this.onEachFeature.bind(this)}/>
-
                 </Map>
-                <RaisedButton label="Im a button" onTouchTap={this.handleClick}/>
             </div>
 
         )
